@@ -29,22 +29,35 @@ void pedir_informe()
   }
 }
 
+int validar_telar(int *telar)
+{
+  printf("Ingrese el numero de telar (0-%d) o 0 para salir.\n> ", ROWS);
+  scanf("%d", &telar);
+  if (*telar == 0)
+    return 0;
+
+  if (*telar < 0 || *telar > ROWS)
+  {
+    printf("Telar invalido, intente de nuevo.\n");
+    return 0;
+  }
+}
+
+void telar_mas_productivo(double prices[ROWS])
+{
+  int telar = 0;
+}
+
 void gastado_telar(double fixes[ROWS])
 {
   int telar = -1;
 
   while (telar != 0)
   {
-    printf("Ingrese el numero de telar (0-%d) o 0 para salir.\n> ", ROWS);
-    scanf("%d", &telar);
-    if (telar == 0)
+    int valid = validar_telar(&telar);
+    if (valid != 1)
       continue;
 
-    if (telar < 0 || telar > ROWS)
-    {
-      printf("Telar invalido, intente de nuevo.\n");
-      continue;
-    }
     printf("Gastado en el telar: %d\t| %.2lf\n", telar, fixes[telar - 1]);
   }
 }
